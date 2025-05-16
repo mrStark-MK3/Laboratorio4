@@ -8,13 +8,11 @@ public class Apartamento {
     private ArrayList<Inquilino> inqnos = new ArrayList();
     private int precio;
     private int suciedad;
-    private int limpieza;
     
     //Constructor
-    public Apartamento(int precio, int suciedad, int limpieza) {
+    public Apartamento(int precio, int suciedad) {
         this.precio = precio;
         this.suciedad = suciedad;
-        this.limpieza = limpieza;
     }
     
     //Mutadores
@@ -42,14 +40,7 @@ public class Apartamento {
         this.suciedad = suciedad;
     }
 
-    public int getLimpieza() {
-        return limpieza;
-    }
-
-    public void setLimpieza(int limpieza) {
-        this.limpieza = limpieza;
-    }
-    
+    //Funciones
     public String ListaInquilinos() {
         String lista = "Inquilinos: | ";
         for (int i = 0; i <= inqnos.size()-1; i++) {

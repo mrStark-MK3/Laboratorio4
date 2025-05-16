@@ -57,11 +57,41 @@ public class Inquilino extends Persona {
         
     }
     
-    public void SolicitarLimpieza() {
+    public void SolicitarLimpieza(Edificio edificio) {
+        
+        for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
+            edificio.getLmpds().get(i).getListaSolicitudes().add(apt);
+        }
         
     }
     
-    public void AceptarLimpieza() {
+    public void AceptarLimpieza(Edificio edificio) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        ArrayList<Limpiador> solicitudes = new ArrayList();
+        
+        for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
+            if (edificio.getLmpds().get(i).getListaSolicitudes().contains(apt)) {
+                solicitudes.add(edificio.getLmpds().get(i));
+            }
+        }
+        
+        if (!solicitudes.isEmpty()) {
+            for (int i = 0; i <= solicitudes.size()-1; i++) {
+                System.out.println((i+1) + ". " + solicitudes.get(i).getNombre());
+            }
+            
+            System.out.print("Ingresa el indice del limpiador: ");
+            int index = input.nextInt()-1;
+            if (index<0 || index>=solicitudes.size()) {
+                System.out.println("Indice fuera de rango, intentalo otra vez");
+                AceptarLimpieza(edificio);
+            } else {
+                solicitudes.get(index).LimpiarApartamento(apt);
+            }
+            
+        }
         
     }
     

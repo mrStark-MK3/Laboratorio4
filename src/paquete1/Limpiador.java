@@ -16,12 +16,20 @@ public class Limpiador extends Persona {
     }
     
     //Funciones
-    public void OfrecerLimpieza() {
-        //Mostrar lista de inquilinos y ofrecerle limpieza a uno o a todos
+    public void OfrecerLimpieza(ArrayList<Inquilino> inquilinos) {
+        
+        for (int i = 0; i <= inquilinos.size()-1; i++) {
+            System.out.println((i+1) + ". " + inquilinos.get(i).getNombre());
+        }
+        
+        System.out.println("");
+        
     }
     
-    public void LimpiarApartamento() {
+    public void LimpiarApartamento(Apartamento apt) {
         //Lista de solicitudes y limpiar uno
+        apt.setSuciedad(0);
+        
     }
     
     //Mutadores

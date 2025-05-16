@@ -14,7 +14,7 @@ public class Main {
         Edificio edificio = new Edificio(casero);
         
         for (int i = 0; i < 5; i++) {
-            edificio.getApts().add(new Apartamento((rd.nextInt(50,151)), 0, 0));
+            edificio.getApts().add(new Apartamento((rd.nextInt(50,151)), 0));
         }
         
         Acciones acs = new Acciones(edificio);

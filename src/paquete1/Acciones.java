@@ -7,6 +7,7 @@ public class Acciones {
     
     private Edificio edificio;
     private ArrayList <Inquilino> inquilinos = new ArrayList();
+    private ArrayList <Limpiador> limpiadores = new ArrayList();
 
     public Acciones(Edificio edificio) {
         this.edificio = edificio;
@@ -47,7 +48,18 @@ public class Acciones {
                     }
                     break;
                 case 3:
-                    MenuLimpiador();
+                    if (!limpiadores.isEmpty()) {
+                        for (int i = 0; i <= limpiadores.size()-1; i++) {
+                            System.out.println((i+1) + ". " + limpiadores.get(i).getNombre());
+                        }
+                        System.out.print("Ingresa el indice del limpiador: ");
+                        int index = input.nextInt()-1;
+                        if (index<0 || index>=limpiadores.size()) {
+                            System.out.println("Indice fuera de rango");
+                        } else {
+                            MenuLimpiador(limpiadores.get(index));
+                        }
+                    }
                     break;
                 case 4:
                     break;
@@ -122,8 +134,10 @@ public class Acciones {
                     inquilino.CortarContrato(inquilino);
                     break;
                 case 3:
+                    inquilino.SolicitarLimpieza(edificio);
                     break;
                 case 4:
+                    inquilino.AceptarLimpieza(edificio);
                     break;
                 case 5:
                     System.out.println("Volviendo...");
@@ -135,7 +149,31 @@ public class Acciones {
         
     }
     
-    public void MenuLimpiador() {
+    public void MenuLimpiador(Limpiador limpiador) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        int op;
+        do {
+            System.out.println("--MENU DE LIMPIADOR--");
+            System.out.println("1. Ofrecer limpieza");
+            System.out.println("2. Limpiar apartamentos");
+            System.out.println("3. Volver al menu principal");
+            System.out.print("Ingresa el numero de la opcion: ");
+            op = input.nextInt();
+            switch (op) {
+                case 1:
+                    limpiador.OfrecerLimpieza(inquilinos);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    System.out.println("Volviendo...");
+                    break;
+                default:
+                    System.out.println("Opcion fuera de rango");
+            }
+        } while (op!=3);
         
     }
     
