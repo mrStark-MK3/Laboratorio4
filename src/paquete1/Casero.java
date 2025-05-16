@@ -19,9 +19,8 @@ public class Casero extends Persona {
         Scanner input = new Scanner(System.in);
         
         if (!estados.isEmpty()) {
-            for (int i = 0; i <= estados.size()-1; i++) {
-                System.out.println((i+1) + ". " + estados.get(i).getApt().toString());
-            }
+            
+            VerNotificaciones();
 
             System.out.print("Ingresa el indice del apartamento a desalojar: ");
             int index = input.nextInt()-1;
@@ -35,17 +34,33 @@ public class Casero extends Persona {
                 System.out.println(edificio.getApts().get(index).toString());
             }    
         } else {
-            System.out.println("No se puede desalijar ningun apartamento");
+            System.out.println("No se puede desalojar ningun apartamento");
         }
     }
     
-    public void DespedirLimpiador() {
+    public void DespedirLimpiador(Edificio edificio) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
+            System.out.println((i+1) + ". " + edificio.getLmpds().get(i).getNombre());
+        }
+        System.out.print("Ingresa el indice del limpiador a eliminar: ");
+        int index = input.nextInt()-1;
+        if (index<0 || index>=edificio.getLmpds().size()) {
+            System.out.println("Indice fuera de rango, intentalo otra vez");
+            DespedirLimpiador(edificio);
+        } else {
+            edificio.getLmpds().get(index).setContratado(false);
+        }
         
     }
     
     public void VerNotificaciones() {
         //Ve las notificaciones de los apartamento que estan 100% sucios
-        
+        for (int i = 0; i <= estados.size()-1; i++) {
+            System.out.println((i+1) + ". " + estados.get(i).getApt().toString());
+        }
     }
     
 }

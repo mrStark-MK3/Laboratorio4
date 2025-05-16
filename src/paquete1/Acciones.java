@@ -69,12 +69,13 @@ public class Acciones {
                     break;
                 case 2:
                     if (!edificio.getLmpds().isEmpty()) {
-                        
+                        edificio.getDuenio().DespedirLimpiador(edificio);
                     } else {
-                        System.out.println("*no hay limpiadores*");
+                        System.out.println("*No hay limpiadores*");
                     }
                     break;
                 case 3:
+                    edificio.getDuenio().VerNotificaciones();
                     break;
                 case 4:
                     System.out.println("Volviendo...");
@@ -87,6 +88,35 @@ public class Acciones {
     }
     
     public void MenuInquilino() {
+        
+        Scanner input = new Scanner(System.in);
+        
+        int op;
+        do {
+            System.out.println("-- MENU DE INQUILINO -- ");
+            System.out.println("1. Firmar contrato");
+            System.out.println("2. Cortar contrato");
+            System.out.println("3. Solicitar limpieza");
+            System.out.println("4. Aceptar Limpieza");
+            System.out.println("5. Volver al menu principal");
+            System.out.print("Ingresa el numero de la opcion: ");
+            op = input.nextInt();
+            switch (op) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    System.out.println("Volviendo...");
+                    break;
+                default:
+                    System.out.println("Opcion fuera de rango");
+            }
+        } while (op!=5);
         
     }
     

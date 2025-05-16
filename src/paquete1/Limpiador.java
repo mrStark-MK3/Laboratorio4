@@ -24,4 +24,38 @@ public class Limpiador extends Persona {
         //Lista de solicitudes y limpiar uno
     }
     
+    //Mutadores
+    public boolean isContratado() {
+        return contratado;
+    }
+
+    public void setContratado(boolean contratado) {
+        this.contratado = contratado;
+    }
+
+    public ArrayList<Inquilino> getIqnos() {
+        return iqnos;
+    }
+
+    public void setIqnos(ArrayList<Inquilino> iqnos) {
+        this.iqnos = iqnos;
+    }
+
+    public ArrayList<Apartamento> getListaSolicitudes() {
+        return listaSolicitudes;
+    }
+
+    public void setListaSolicitudes(ArrayList<Apartamento> listaSolicitudes) {
+        this.listaSolicitudes = listaSolicitudes;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 }
