@@ -5,21 +5,21 @@ import java.util.ArrayList;
 public class Edificio {
     
     //Atributos
-    private String duenio;
+    private Casero duenio;
     private ArrayList<Apartamento> apts = new ArrayList();
     private ArrayList<Limpiador> lmpds= new ArrayList(); 
     
     //Constructor
-    public Edificio(String duenio) {
+    public Edificio(Casero duenio) {
         this.duenio = duenio;
     }
     
     //Mutadores
-    public String getDuenio() {
+    public Casero getDuenio() {
         return duenio;
     }
 
-    public void setDuenio(String duenio) {
+    public void setDuenio(Casero duenio) {
         this.duenio = duenio;
     }
 
@@ -38,7 +38,5 @@ public class Edificio {
     public void setLmpds(ArrayList<Limpiador> lmpds) {
         this.lmpds = lmpds;
     }
-    
-    
     
 }

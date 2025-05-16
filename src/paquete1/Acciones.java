@@ -4,7 +4,14 @@ import java.util.Scanner;
 
 public class Acciones {
     
-    public void MenuPrincipal(Edificio edificio) {
+    private Edificio edificio;
+
+    public Acciones(Edificio edificio) {
+        this.edificio = edificio;
+    }
+    
+    public void MenuPrincipal() {
+        
         
         Scanner input = new Scanner(System.in);
         
@@ -54,12 +61,18 @@ public class Acciones {
             System.out.println("2. Despedir limpiadores");
             System.out.println("3. Ver notificaciones");
             System.out.println("4. Volver al menu principal");
-            System.out.println("Ingresa el numero de la opcion: ");
+            System.out.print("Ingresa el numero de la opcion: ");
             op = input.nextInt();
             switch (op) {
                 case 1:
+                    edificio.getDuenio().Desalojar(edificio);
                     break;
                 case 2:
+                    if (!edificio.getLmpds().isEmpty()) {
+                        
+                    } else {
+                        System.out.println("*no hay limpiadores*");
+                    }
                     break;
                 case 3:
                     break;

@@ -50,5 +50,20 @@ public class Apartamento {
         this.limpieza = limpieza;
     }
     
+    public String ListaInquilinos() {
+        String lista = "Inquilinos: | ";
+        for (int i = 0; i <= inqnos.size()-1; i++) {
+            lista += inqnos.get(i).getNombre() + " | ";
+        }
+        
+        return lista;
+    }
+    
+    //ToString
+    @Override
+    public String toString() {
+        return "Precio: L." + precio + " | " + ListaInquilinos();
+    }
+    
     
 }

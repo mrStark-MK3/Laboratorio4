@@ -9,17 +9,16 @@ public class Main {
         
         Random rd = new Random();
         
-        Acciones acs = new Acciones();
-        
         Casero casero = new Casero("Pedri Gonzales el GOAT");
         
-        Edificio edificio = new Edificio(casero.getNombre());
+        Edificio edificio = new Edificio(casero);
         
         for (int i = 0; i < 5; i++) {
             edificio.getApts().add(new Apartamento((rd.nextInt(50,151)), 0, 0));
         }
         
-        acs.MenuPrincipal(edificio);
+        Acciones acs = new Acciones(edificio);
+        acs.MenuPrincipal();
         
     }
     
