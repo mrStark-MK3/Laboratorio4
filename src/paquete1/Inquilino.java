@@ -1,10 +1,13 @@
 package paquete1;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Inquilino extends Persona {
     
     //Atributos
     private Apartamento apt;
-    private boolean estado;
+    private boolean estado;// True: Con contrato | False: Sin contrato
 
     //Constructor
     public Inquilino(Apartamento apt, boolean estado, String nombre) {
@@ -14,8 +17,37 @@ public class Inquilino extends Persona {
     }
     
     //Funciones
-    public void FirmarContrato() {
+    public void FirmarContrato(Edificio edificio, Inquilino inquilino) {
+        
+        Scanner input = new Scanner(System.in);
+        
         //Revisar apartamentos disponibles y preguntarle al usuario cual quiere
+        ArrayList <Apartamento> disponibles = new ArrayList();
+        for (int i = 0; i <= edificio.getApts().size()-1; i++) {
+            if (edificio.getApts().get(i).getInqnos().size()<3) {
+                disponibles.add(edificio.getApts().get(i));
+            }
+        }
+        if (!disponibles.isEmpty()) {
+            //Se muestran como apartamentos disponibles aquellos que tiene menos de inquilinos
+            for (int i = 0; i <= disponibles.size()-1; i++) {
+                System.out.println((i+1) + ". " + edificio.getApts().get(i).toString());
+            }
+            System.out.print("Ingresa el indice del apartamento que queres: ");
+            int index = input.nextInt()-1;
+            if (index<0 || index>=disponibles.size()) {
+                System.out.println("Indice fuera de rango, intentalo otra vez");
+                FirmarContrato(edificio, inquilino);
+            } else {
+                Apartamento elegido = disponibles.get(index);
+                apt = elegido;
+                estado = true;
+                elegido.getInqnos().add(inquilino);
+            }    
+        } else {
+            System.out.println("No hay Apartamentos disponibles");
+        }
+        
     }
     
     public void CortarContrato() {

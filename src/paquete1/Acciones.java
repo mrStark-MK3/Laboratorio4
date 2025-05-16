@@ -1,10 +1,12 @@
 package paquete1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Acciones {
     
     private Edificio edificio;
+    private ArrayList <Inquilino> inquilinos = new ArrayList();
 
     public Acciones(Edificio edificio) {
         this.edificio = edificio;
@@ -31,7 +33,18 @@ public class Acciones {
                     MenuCasero();
                     break;
                 case 2:
-                    MenuInquilino();
+                    if (!inquilinos.isEmpty()) {
+                        for (int i = 0; i <= inquilinos.size()-1; i++) {
+                            System.out.println((i+1) + ". " + inquilinos.get(i).getNombre());
+                        }
+                        System.out.print("Ingresa el indice del inquilino: ");
+                        int index = input.nextInt()-1;
+                        if (index<0 ||index>=inquilinos.size()) {
+                            System.out.println("indice fuera de rango");
+                        } else {
+                            MenuInquilino(inquilinos.get(index));
+                        }
+                    }
                     break;
                 case 3:
                     MenuLimpiador();
@@ -87,7 +100,7 @@ public class Acciones {
         
     }
     
-    public void MenuInquilino() {
+    public void MenuInquilino(Inquilino inquilino) {
         
         Scanner input = new Scanner(System.in);
         
@@ -103,8 +116,10 @@ public class Acciones {
             op = input.nextInt();
             switch (op) {
                 case 1:
+                    inquilino.FirmarContrato(edificio, inquilino);
                     break;
                 case 2:
+                    
                     break;
                 case 3:
                     break;
