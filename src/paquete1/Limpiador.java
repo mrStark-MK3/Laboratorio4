@@ -9,6 +9,12 @@ public class Limpiador extends Persona {
     private ArrayList<Inquilino> iqnos = new ArrayList();
     private ArrayList<Apartamento> listaSolicitudes = new ArrayList();
     
+    //Construcor
+    public Limpiador(boolean contratado, String nombre) {
+        super(nombre);
+        this.contratado = contratado;
+    }
+    
     //Funciones
     public void OfrecerLimpieza() {
         //Mostrar lista de inquilinos y ofrecerle limpieza a uno o a todos

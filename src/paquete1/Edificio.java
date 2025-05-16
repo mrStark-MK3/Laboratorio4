@@ -5,24 +5,29 @@ import java.util.ArrayList;
 public class Edificio {
     
     //Atributos
-    private String disenio;
-    private Apartamento [] apts = new Apartamento[10];
+    private String duenio;
+    private ArrayList<Apartamento> apts = new ArrayList();
     private ArrayList<Limpiador> lmpds= new ArrayList(); 
     
+    //Constructor
+    public Edificio(String duenio) {
+        this.duenio = duenio;
+    }
+    
     //Mutadores
-    public String getDisenio() {
-        return disenio;
+    public String getDuenio() {
+        return duenio;
     }
 
-    public void setDisenio(String disenio) {
-        this.disenio = disenio;
+    public void setDuenio(String duenio) {
+        this.duenio = duenio;
     }
 
-    public Apartamento[] getApts() {
+    public ArrayList<Apartamento> getApts() {
         return apts;
     }
 
-    public void setApts(Apartamento[] apts) {
+    public void setApts(ArrayList<Apartamento> apts) {
         this.apts = apts;
     }
 
@@ -33,6 +38,7 @@ public class Edificio {
     public void setLmpds(ArrayList<Limpiador> lmpds) {
         this.lmpds = lmpds;
     }
+    
     
     
 }

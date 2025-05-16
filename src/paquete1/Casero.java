@@ -7,6 +7,11 @@ public class Casero extends Persona {
     //Atributos
     private ArrayList<Inquilino> estados = new ArrayList();//Si esta 100% sucio
     
+    //Constructor
+    public Casero(String nombre) {
+        super(nombre);
+    }
+    
     //Funciones
     public void Desalojar() {
         //Usar si y solo si el inquilino tiene el apartamento 100% sucio

@@ -5,6 +5,13 @@ public class Inquilino extends Persona {
     //Atributos
     private Apartamento apt;
     private boolean estado;
+
+    //Constructor
+    public Inquilino(Apartamento apt, boolean estado, String nombre) {
+        super(nombre);
+        this.apt = apt;
+        this.estado = estado;
+    }
     
     //Funciones
     public void FirmarContrato() {

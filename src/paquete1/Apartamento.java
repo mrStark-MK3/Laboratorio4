@@ -10,6 +10,13 @@ public class Apartamento {
     private int suciedad;
     private int limpieza;
     
+    //Constructor
+    public Apartamento(int precio, int suciedad, int limpieza) {
+        this.precio = precio;
+        this.suciedad = suciedad;
+        this.limpieza = limpieza;
+    }
+    
     //Mutadores
     public ArrayList<Inquilino> getInqnos() {
         return inqnos;
