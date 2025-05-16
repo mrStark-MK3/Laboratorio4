@@ -10,9 +10,8 @@ public class Inquilino extends Persona {
     private boolean estado;// True: Con contrato | False: Sin contrato
 
     //Constructor
-    public Inquilino(Apartamento apt, boolean estado, String nombre) {
+    public Inquilino(boolean estado, String nombre) {
         super(nombre);
-        this.apt = apt;
         this.estado = estado;
     }
     
@@ -50,7 +49,11 @@ public class Inquilino extends Persona {
         
     }
     
-    public void CortarContrato() {
+    public void CortarContrato(Inquilino inquilino) {
+        
+        apt.getInqnos().remove(inquilino);
+        apt = null;
+        estado = false;
         
     }
     

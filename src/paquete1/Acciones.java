@@ -119,7 +119,7 @@ public class Acciones {
                     inquilino.FirmarContrato(edificio, inquilino);
                     break;
                 case 2:
-                    
+                    inquilino.CortarContrato(inquilino);
                     break;
                 case 3:
                     break;
