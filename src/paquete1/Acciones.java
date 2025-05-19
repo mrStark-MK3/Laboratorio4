@@ -5,12 +5,39 @@ import java.util.Scanner;
 
 public class Acciones {
     
+    //Atributos
     private Edificio edificio;
     private ArrayList <Inquilino> inquilinos = new ArrayList();
-    private ArrayList <Limpiador> limpiadores = new ArrayList();
 
+    //Constructor
     public Acciones(Edificio edificio) {
         this.edificio = edificio;
+    }
+    
+    //Funciones
+    public void AgregarInquilino() {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Ingrese el nombre del Inquilino: ");
+        String nombre = input.next();
+        
+        inquilinos.add(new Inquilino(false, nombre));
+        System.out.println("Inquilino creado");
+        
+    }
+    
+    public void AgregarLimpiador() {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Ingrese el nombre del limpiador: ");
+        String nombre = input.next();
+        
+        edificio.getLmpds().add(new Limpiador(true, nombre));
+        
+        System.out.println("Limpiador creado");
+        
     }
     
     public void MenuPrincipal() {
@@ -31,10 +58,14 @@ public class Acciones {
             op = input.nextInt();
             switch (op) {
                 case 1:
+                    System.out.println("----------------------------------------");
                     MenuCasero();
+                    System.out.println("----------------------------------------");
+                    edificio.Ensuciar();
                     break;
                 case 2:
                     if (!inquilinos.isEmpty()) {
+                        System.out.println("----------------------------------------");
                         for (int i = 0; i <= inquilinos.size()-1; i++) {
                             System.out.println((i+1) + ". " + inquilinos.get(i).getNombre());
                         }
@@ -45,25 +76,40 @@ public class Acciones {
                         } else {
                             MenuInquilino(inquilinos.get(index));
                         }
+                        System.out.println("----------------------------------------");
+                    } else {
+                        System.out.println("*No hay inquilinos*");
                     }
+                    edificio.Ensuciar();
                     break;
                 case 3:
-                    if (!limpiadores.isEmpty()) {
-                        for (int i = 0; i <= limpiadores.size()-1; i++) {
-                            System.out.println((i+1) + ". " + limpiadores.get(i).getNombre());
+                    if (!edificio.getLmpds().isEmpty()) {
+                        System.out.println("----------------------------------------");
+                        for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
+                            System.out.println((i+1) + ". " + edificio.getLmpds().get(i).getNombre());
                         }
                         System.out.print("Ingresa el indice del limpiador: ");
                         int index = input.nextInt()-1;
-                        if (index<0 || index>=limpiadores.size()) {
+                        if (index<0 || index>=edificio.getLmpds().size()) {
                             System.out.println("Indice fuera de rango");
                         } else {
-                            MenuLimpiador(limpiadores.get(index));
+                            MenuLimpiador(edificio.getLmpds().get(index));
                         }
+                        System.out.println("----------------------------------------");
+                    } else {
+                        System.out.println("No hay limpiadores");
                     }
+                    edificio.Ensuciar();
                     break;
                 case 4:
+                    System.out.println("----------------------------------------");
+                    AgregarInquilino();
+                    System.out.println("----------------------------------------");
                     break;
                 case 5:
+                    System.out.println("----------------------------------------");
+                    AgregarLimpiador();
+                    System.out.println("----------------------------------------");
                     break;
                 case 6:
                     System.out.println("Saliendo...");
@@ -71,7 +117,8 @@ public class Acciones {
                 default:
                     System.out.println("Opcion fuera de rango");
             }
-        } while (op!=4);
+
+        } while (op!=6);
         
     }
     
@@ -90,20 +137,28 @@ public class Acciones {
             op = input.nextInt();
             switch (op) {
                 case 1:
+                    System.out.println("----------------------------------------");
                     edificio.getDuenio().Desalojar(edificio);
+                    System.out.println("----------------------------------------");
                     break;
                 case 2:
                     if (!edificio.getLmpds().isEmpty()) {
+                        System.out.println("----------------------------------------");
                         edificio.getDuenio().DespedirLimpiador(edificio);
+                        System.out.println("----------------------------------------");
                     } else {
                         System.out.println("*No hay limpiadores*");
                     }
                     break;
                 case 3:
+                    System.out.println("----------------------------------------");
                     edificio.getDuenio().VerNotificaciones();
+                    System.out.println("----------------------------------------");
                     break;
                 case 4:
+                    System.out.println("----------------------------------------");
                     System.out.println("Volviendo...");
+                    System.out.println("----------------------------------------");
                     break;
                 default:
                     System.out.println("Opcion fuera de rango");
@@ -118,7 +173,7 @@ public class Acciones {
         
         int op;
         do {
-            System.out.println("-- MENU DE INQUILINO -- ");
+            System.out.println("-- MENU DE " + inquilino.getNombre().toUpperCase() + " --");
             System.out.println("1. Firmar contrato");
             System.out.println("2. Cortar contrato");
             System.out.println("3. Solicitar limpieza");
@@ -128,19 +183,29 @@ public class Acciones {
             op = input.nextInt();
             switch (op) {
                 case 1:
+                    System.out.println("----------------------------------------");
                     inquilino.FirmarContrato(edificio, inquilino);
+                    System.out.println("----------------------------------------");
                     break;
                 case 2:
+                    System.out.println("----------------------------------------");
                     inquilino.CortarContrato(inquilino);
+                    System.out.println("----------------------------------------");
                     break;
                 case 3:
+                    System.out.println("----------------------------------------");
                     inquilino.SolicitarLimpieza(edificio);
+                    System.out.println("----------------------------------------");
                     break;
                 case 4:
+                    System.out.println("----------------------------------------");
                     inquilino.AceptarLimpieza(edificio);
+                    System.out.println("----------------------------------------");
                     break;
                 case 5:
+                    System.out.println("----------------------------------------");
                     System.out.println("Volviendo...");
+                    System.out.println("----------------------------------------");
                     break;
                 default:
                     System.out.println("Opcion fuera de rango");
@@ -155,7 +220,7 @@ public class Acciones {
         
         int op;
         do {
-            System.out.println("--MENU DE LIMPIADOR--");
+            System.out.println("-- MENU DE " + limpiador.getNombre().toUpperCase() + " --");
             System.out.println("1. Ofrecer limpieza");
             System.out.println("2. Limpiar apartamentos");
             System.out.println("3. Volver al menu principal");
@@ -163,18 +228,24 @@ public class Acciones {
             op = input.nextInt();
             switch (op) {
                 case 1:
+                    System.out.println("----------------------------------------");
                     limpiador.OfrecerLimpieza(inquilinos);
+                    System.out.println("----------------------------------------");
                     break;
                 case 2:
+                    System.out.println("----------------------------------------");
+                    limpiador.LimpiarApartamentos();
+                    System.out.println("----------------------------------------");
                     break;
                 case 3:
+                    System.out.println("----------------------------------------");
                     System.out.println("Volviendo...");
+                    System.out.println("----------------------------------------");
                     break;
                 default:
                     System.out.println("Opcion fuera de rango");
             }
         } while (op!=3);
-        
     }
     
 }

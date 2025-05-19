@@ -14,6 +14,27 @@ public class Edificio {
         this.duenio = duenio;
     }
     
+    //Funciones
+    public void Ensuciar() {
+        
+        for (int i = 0; i <= apts.size()-1; i++) {
+            apts.get(i).Ensuciar();
+        }
+        
+        Notificar();
+        
+    }
+    
+    public void Notificar() {
+        
+        for (int i = 0; i <= apts.size()-1; i++) {
+            if (apts.get(i).getSuciedad()>=10) {
+                duenio.getEstados().add(apts.get(i));
+            }
+        }
+        
+    }
+    
     //Mutadores
     public Casero getDuenio() {
         return duenio;

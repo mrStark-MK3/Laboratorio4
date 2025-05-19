@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Casero extends Persona {
     
     //Atributos
-    private ArrayList<Inquilino> estados = new ArrayList();//Si esta 100% sucio
+    private ArrayList<Apartamento> estados = new ArrayList();//Si esta 100% sucio
     
     //Constructor
     public Casero(String nombre) {
@@ -51,16 +51,34 @@ public class Casero extends Persona {
             System.out.println("Indice fuera de rango, intentalo otra vez");
             DespedirLimpiador(edificio);
         } else {
-            edificio.getLmpds().get(index).setContratado(false);
+            edificio.getLmpds().get(index).setEstadoContrato(false);
+            System.out.println(edificio.getLmpds().get(index).getNombre() + " ha sido despedidio.");
+            edificio.getLmpds().remove(index);
         }
         
     }
     
     public void VerNotificaciones() {
         //Ve las notificaciones de los apartamento que estan 100% sucios
-        for (int i = 0; i <= estados.size()-1; i++) {
-            System.out.println((i+1) + ". " + estados.get(i).getApt().toString());
+        
+        if (!estados.isEmpty()) {
+            for (int i = 0; i <= estados.size()-1; i++) {
+                System.out.println((i+1) + ". " + estados.get(i).toString() + "Suciedad: " + estados.get(i).getSuciedad());
+            }
+        } else {
+            System.out.println("*No hay notificaciones*");
         }
+        
     }
+    
+    //Mutadores
+    public ArrayList<Apartamento> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(ArrayList<Apartamento> estados) {
+        this.estados = estados;
+    }
+    
     
 }

@@ -37,11 +37,14 @@ public class Inquilino extends Persona {
             if (index<0 || index>=disponibles.size()) {
                 System.out.println("Indice fuera de rango, intentalo otra vez");
                 FirmarContrato(edificio, inquilino);
-            } else {
+            } else if (!estado) {
                 Apartamento elegido = disponibles.get(index);
                 apt = elegido;
                 estado = true;
                 elegido.getInqnos().add(inquilino);
+                System.out.println("*Contrato firmado*");
+            } else {
+                System.out.println("*Ya tenes apartamento pa*");
             }    
         } else {
             System.out.println("No hay Apartamentos disponibles");
@@ -51,9 +54,14 @@ public class Inquilino extends Persona {
     
     public void CortarContrato(Inquilino inquilino) {
         
-        apt.getInqnos().remove(inquilino);
-        apt = null;
-        estado = false;
+        if (apt != null) {
+            apt.getInqnos().remove(inquilino);
+            apt = null;
+            estado = false;
+            System.out.println("*Contrato cerrado*");
+        } else {
+            System.out.println("*Sin contratos*");
+        }
         
     }
     
@@ -62,6 +70,8 @@ public class Inquilino extends Persona {
         for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
             edificio.getLmpds().get(i).getListaSolicitudes().add(apt);
         }
+        
+        System.out.println("*Limpieza solicitida*");
         
     }
     
@@ -88,9 +98,10 @@ public class Inquilino extends Persona {
                 System.out.println("Indice fuera de rango, intentalo otra vez");
                 AceptarLimpieza(edificio);
             } else {
-                solicitudes.get(index).LimpiarApartamento(apt);
+                solicitudes.get(index).Limpiar(apt);
             }
-            
+        } else {
+            System.out.println("*No hay solicitudes de limpieza*");
         }
         
     }
@@ -110,14 +121,6 @@ public class Inquilino extends Persona {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
     
 }

@@ -50,6 +50,14 @@ public class Apartamento {
         return lista;
     }
     
+    public void Ensuciar() {
+        
+        if (!inqnos.isEmpty()) {
+            suciedad += 5;
+        }
+        
+    }
+    
     //ToString
     @Override
     public String toString() {
