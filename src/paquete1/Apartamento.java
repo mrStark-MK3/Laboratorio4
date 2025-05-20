@@ -64,5 +64,4 @@ public class Apartamento {
         return "Precio: L." + precio + " | " + ListaInquilinos();
     }
     
-    
 }

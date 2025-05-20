@@ -16,7 +16,7 @@ public class Inquilino extends Persona {
     }
     
     //Funciones
-    public void FirmarContrato(Edificio edificio, Inquilino inquilino) {
+    public void FirmarContrato(Edificio edificio) {
         
         Scanner input = new Scanner(System.in);
         
@@ -36,12 +36,12 @@ public class Inquilino extends Persona {
             int index = input.nextInt()-1;
             if (index<0 || index>=disponibles.size()) {
                 System.out.println("Indice fuera de rango, intentalo otra vez");
-                FirmarContrato(edificio, inquilino);
+                FirmarContrato(edificio);
             } else if (!estado) {
                 Apartamento elegido = disponibles.get(index);
                 apt = elegido;
                 estado = true;
-                elegido.getInqnos().add(inquilino);
+                elegido.getInqnos().add(this);
                 System.out.println("*Contrato firmado*");
             } else {
                 System.out.println("*Ya tenes apartamento pa*");
@@ -52,10 +52,10 @@ public class Inquilino extends Persona {
         
     }
     
-    public void CortarContrato(Inquilino inquilino) {
+    public void CortarContrato() {
         
         if (apt != null) {
-            apt.getInqnos().remove(inquilino);
+            apt.getInqnos().remove(this);
             apt = null;
             estado = false;
             System.out.println("*Contrato cerrado*");
@@ -68,7 +68,9 @@ public class Inquilino extends Persona {
     public void SolicitarLimpieza(Edificio edificio) {
         
         for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
-            edificio.getLmpds().get(i).getListaSolicitudes().add(apt);
+            if (edificio.getLmpds().get(i).isEstadoContrato()) {
+                edificio.getLmpds().get(i).getListaSolicitudes().add(apt);
+            }
         }
         
         System.out.println("*Limpieza solicitida*");

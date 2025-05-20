@@ -184,12 +184,12 @@ public class Acciones {
             switch (op) {
                 case 1:
                     System.out.println("----------------------------------------");
-                    inquilino.FirmarContrato(edificio, inquilino);
+                    inquilino.FirmarContrato(edificio);
                     System.out.println("----------------------------------------");
                     break;
                 case 2:
                     System.out.println("----------------------------------------");
-                    inquilino.CortarContrato(inquilino);
+                    inquilino.CortarContrato();
                     System.out.println("----------------------------------------");
                     break;
                 case 3:

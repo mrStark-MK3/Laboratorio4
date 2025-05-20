@@ -19,7 +19,6 @@ public class Main {
         
         Acciones acs = new Acciones(edificio);
         acs.MenuPrincipal();
-        
     }
     
 }

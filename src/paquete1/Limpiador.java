@@ -21,18 +21,30 @@ public class Limpiador extends Persona {
         
         Scanner input = new Scanner(System.in);
         
-        for (int i = 0; i <= inquilinos.size()-1; i++) {
-            System.out.println((i+1) + ". " + inquilinos.get(i).getNombre());
+        //Lista de inquilinos con contrato
+        ArrayList <Inquilino> inqCont = new ArrayList();
+        for (int i = 0; i <= inquilinos.size()-1; i++) {//Llenar lista de inquilinos con contrato
+            if (inquilinos.get(i).isEstado()) {
+                inqCont.add(inquilinos.get(i));
+            }
         }
-        
-        System.out.print("Ingresa el indice del inquilino a servir: ");
-        int index = input.nextInt();
-        if (index<0 || index>=inquilinos.size()) {
-            System.out.println("*Indice fuera de rango, intentalo otra vez*");
-            OfrecerLimpieza(inquilinos);
+        //Elejir el cliente a servir
+        if (!inqCont.isEmpty()) {
+            for (int i = 0; i <= inqCont.size()-1; i++) {
+                System.out.println((i+1) + ". " + inqCont.get(i).getNombre());
+            }
+            System.out.print("Ingresa el indice del inquilino a servir: ");
+            int index = input.nextInt()-1;
+            //Validacion de indice
+            if (index<0 || index>=inquilinos.size()) {
+                System.out.println("*Indice fuera de rango, intentalo otra vez*");
+                OfrecerLimpieza(inquilinos);
+            } else {
+                Limpiar(inqCont.get(index).getApt());
+                System.out.println("Limpieza solicitada al apartamento: " + inqCont.get(index).getApt());
+            }
         } else {
-            Limpiar(inquilinos.get(index).getApt());
-            System.out.println("Limpieza solicitada al apartamento: " + inquilinos.get(index).getApt());
+            System.out.println("*No hay clientes con contrato*");
         }
         
     }
@@ -45,13 +57,14 @@ public class Limpiador extends Persona {
                 System.out.println("Apartamento: " + listaSolicitudes.get(i).toString() + " *Limpio* Suciedad: " + listaSolicitudes.get(i).getSuciedad());
             }
         } else {
-            System.out.println("*Aun n hay solicitudes de limpieza*");
+            System.out.println("*Aun no hay solicitudes de limpieza*");
         }
         
     }
     
     public void Limpiar(Apartamento apt) {
         apt.setSuciedad(0);
+        System.out.println("*Apartamento " + apt.toString() + " limpio* (suciedad: " + apt.getSuciedad() + ")");
     }
     
     //Mutadores
