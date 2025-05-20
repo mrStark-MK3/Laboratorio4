@@ -67,13 +67,17 @@ public class Inquilino extends Persona {
     
     public void SolicitarLimpieza(Edificio edificio) {
         
-        for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
-            if (edificio.getLmpds().get(i).isEstadoContrato()) {
-                edificio.getLmpds().get(i).getListaSolicitudes().add(apt);
+        if (estado) {
+            for (int i = 0; i <= edificio.getLmpds().size()-1; i++) {
+                if (edificio.getLmpds().get(i).isEstadoContrato()) {
+                    edificio.getLmpds().get(i).getListaSolicitudes().add(apt);
+                }
             }
+
+            System.out.println("*Limpieza solicitida*");
+        } else {
+            System.out.println("*No tenes contrato*");
         }
-        
-        System.out.println("*Limpieza solicitida*");
         
     }
     
@@ -100,7 +104,8 @@ public class Inquilino extends Persona {
                 System.out.println("Indice fuera de rango, intentalo otra vez");
                 AceptarLimpieza(edificio);
             } else {
-                solicitudes.get(index).Limpiar(apt);
+                solicitudes.get(index).Limpiar(apt);//Limpiar apartamento
+                solicitudes.remove(index);//Retirar solicitud (tarea completada)
             }
         } else {
             System.out.println("*No hay solicitudes de limpieza*");

@@ -55,6 +55,7 @@ public class Limpiador extends Persona {
             for (int i = 0; i <= listaSolicitudes.size()-1; i++) {
                 listaSolicitudes.get(i).setSuciedad(0);
                 System.out.println("Apartamento: " + listaSolicitudes.get(i).toString() + " *Limpio* Suciedad: " + listaSolicitudes.get(i).getSuciedad());
+                listaSolicitudes.remove(i);
             }
         } else {
             System.out.println("*Aun no hay solicitudes de limpieza*");

@@ -80,5 +80,4 @@ public class Casero extends Persona {
         this.estados = estados;
     }
     
-    
 }
